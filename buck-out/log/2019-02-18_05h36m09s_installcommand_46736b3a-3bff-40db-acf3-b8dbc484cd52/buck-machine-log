@@ -1,3 +1,0 @@
-InvocationInfo {"buildId":"46736b3a-3bff-40db-acf3-b8dbc484cd52","superConsoleEnabled":true,"isDaemon":true,"subCommand":"installcommand","commandArgs":["install","app","--config-file",".okbuck/config/okbuck.buckconfig"],"unexpandedCommandArgs":["install","app","--config-file",".okbuck/config/okbuck.buckconfig"],"buckLogDir":"buck-out/log","timestampMillis":1550468169383}
-Cache.Stats {"cacheHitsPerMode":{"dir":0},"cacheErrorsPerMode":{"dir":0},"totalCacheHits":0,"totalCacheErrors":0,"totalCacheMisses":0,"totalCacheIgnores":0,"totalCacheLocalKeyUnchangedHits":0,"successUploadCount":0,"failureUploadCount":0}
-ExitCode {"exitCode":5}

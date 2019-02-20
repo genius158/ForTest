@@ -1,3 +1,0 @@
-InvocationInfo {"buildId":"ca818e9e-a695-49d3-a90a-cbe7a6d463e1","superConsoleEnabled":true,"isDaemon":true,"subCommand":"targetscommand","commandArgs":["targets","--config-file",".okbuck/config/okbuck.buckconfig"],"unexpandedCommandArgs":["targets","--config-file",".okbuck/config/okbuck.buckconfig"],"buckLogDir":"buck-out/log","timestampMillis":1550468956049}
-Cache.Stats {"cacheHitsPerMode":{"dir":0},"cacheErrorsPerMode":{"dir":0},"totalCacheHits":0,"totalCacheErrors":0,"totalCacheMisses":0,"totalCacheIgnores":0,"totalCacheLocalKeyUnchangedHits":0,"successUploadCount":0,"failureUploadCount":0}
-ExitCode {"exitCode":10}

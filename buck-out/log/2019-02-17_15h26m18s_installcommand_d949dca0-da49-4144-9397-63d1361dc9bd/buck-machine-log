@@ -1,5 +1,0 @@
-InvocationInfo {"buildId":"d949dca0-da49-4144-9397-63d1361dc9bd","superConsoleEnabled":true,"isDaemon":true,"subCommand":"installcommand","commandArgs":["install","--run","app","--config-file",".okbuck/config/okbuck.buckconfig"],"unexpandedCommandArgs":["install","--run","app","--config-file",".okbuck/config/okbuck.buckconfig"],"buckLogDir":"buck-out/log","timestampMillis":1550417178042}
-FileDelete {"timestamp":1550417183078,"filename":"WatchmanPathEvent{cellPath=/Users/yanxianwei/AndroidStudioProjects/ForTest, kind=DELETE, path=.watchman-cookie-yandeMacBook-Pro.local-5416-79}"}
-FileDelete {"timestamp":1550417183079,"filename":"WatchmanPathEvent{cellPath=/Users/yanxianwei/AndroidStudioProjects/ForTest, kind=DELETE, path=.watchman-cookie-yandeMacBook-Pro.local-5416-78}"}
-Cache.Stats {"cacheHitsPerMode":{"dir":0},"cacheErrorsPerMode":{"dir":0},"totalCacheHits":0,"totalCacheErrors":0,"totalCacheMisses":0,"totalCacheIgnores":0,"totalCacheLocalKeyUnchangedHits":0,"successUploadCount":0,"failureUploadCount":0}
-ExitCode {"exitCode":5}
