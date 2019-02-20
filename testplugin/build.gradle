@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+  implementation gradleApi()
+  implementation localGroovy()
+  implementation files('libs/asm-6.0.jar')
+  implementation files('libs/asm-commons-6.0.jar')
+  implementation 'com.android.tools.build:gradle:3.3.0'
+
+}
+repositories {
+  jcenter()
+  google()
+
+  mavenCentral()
+}
+
+
+group = 'com.yan.test'
+version = '1.0.4'
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(url: uri('../repo'))
+    }
+  }
+}
+
+////设置maven deployer
+//uploadArchives {
+//  repositories {
+//    mavenDeployer {
+//      //设置插件的GAV参数
+//      pom.groupId = 'com.yan.test'
+//      pom.artifactId = 'test-plugin'
+//      pom.version = 2.0
+//      //文件发布到下面目录
+//      repository(url: uri('../release'))
+//    }
+//  }
+//}

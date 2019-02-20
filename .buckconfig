@@ -1,0 +1,5 @@
+[alias]
+app = //app:app
+
+[project]
+ignore = .git, **/.svn,
