@@ -68,11 +68,19 @@ class TestTransform extends Transform {
 
         //jar文件一般是第三方依赖库jar文件
         // 重命名输出文件（同目录copyFile会冲突）
+
         def jarName = jarInput.name
         def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
         if (jarName.endsWith(".jar")) {
           jarName = jarName.substring(0, jarName.length() - 4)
         }
+        System.out.println("FilePath     outputFilePath === jar " + jarName +
+            "    " +
+            jarInput.file +
+            "     " +
+            jarInput.file.listFiles()
+        )
+
         //生成输出路径
         def dest = transformInvocation.outputProvider.getContentLocation(jarName + md5Name,
             jarInput.contentTypes, jarInput.scopes, Format.JAR)
