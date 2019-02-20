@@ -14,6 +14,30 @@ import org.objectweb.asm.Opcodes
 class TestTransform extends Transform {
 
   @Override
+  String getName() {
+    return "AsmInject"
+  }
+
+  //用于指明本Transform的名字，也是代表该Transform的task的名字
+  @Override
+  Set<QualifiedContent.ContentType> getInputTypes() {
+    return TransformManager.CONTENT_CLASS
+  }
+
+  //指明Transform的输入类型，可以作为输入过滤的手段
+  @Override
+  Set<? super QualifiedContent.Scope> getScopes() {
+    return TransformManager.SCOPE_FULL_PROJECT
+  }
+
+  //指明Transform的作用域
+  @Override
+  boolean isIncremental() {
+    return false
+  }
+
+  //指明是否是增量构建
+  @Override
   void transform(TransformInvocation transformInvocation)
       throws TransformException, InterruptedException, IOException {
     super.transform(transformInvocation)
@@ -21,29 +45,11 @@ class TestTransform extends Transform {
     transformInvocation.inputs.each { TransformInput input ->
       //对类型为“文件夹”的input进行遍历
       input.directoryInputs.each { DirectoryInput directoryInput ->
+
         //文件夹里面包含的是我们手写的类以及R.class、BuildConfig.class以及R$XXX.class等
         if (directoryInput.file.isDirectory()) {
           // println "==== directoryInput.file = " + directoryInput.file
-          directoryInput.file.eachFileRecurse { File file ->
-            def name = file.name
-            //  println "==== directoryInput file name ==== " + file.getAbsolutePath()
-            if (name.endsWith(".class") && !name.endsWith("R.class") &&
-                !name.endsWith("BuildConfig.class") &&
-                !name.contains("R\$")) {
-              System.out.println(
-                  "FilePath   directoryInput file name ==== " + file.getAbsolutePath())
-
-              ClassReader classReader = new ClassReader(file.bytes)
-              ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
-              AopClassVisitor classVisitor = new AopClassVisitor(Opcodes.ASM5, classWriter)
-              classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
-              byte[] bytes = classWriter.toByteArray()
-              File destFile = new File(file.parentFile.absoluteFile, name)
-              //project.logger.error "==== 重新写入的位置->lastFilePath === " + destFile.getAbsolutePath()
-              FileOutputStream fileOutputStream = new FileOutputStream(destFile)
-              fileOutputStream.write(bytes)
-              fileOutputStream.close()
-            }
+          directoryInput.file.eachFileRecurse { File file -> fileModify(file)
           }
         }
 
@@ -76,27 +82,27 @@ class TestTransform extends Transform {
     }
   }
 
-  //用于指明本Transform的名字，也是代表该Transform的task的名字
-  @Override
-  String getName() {
-    return "AsmInject"
-  }
+  static def fileModify(File file) {
+    def name = file.name
 
-  //指明Transform的输入类型，可以作为输入过滤的手段
-  @Override
-  Set<QualifiedContent.ContentType> getInputTypes() {
-    return TransformManager.CONTENT_CLASS
-  }
+    System.out.println("FilePath   directoryInput file name ==== " + name)
 
-  //指明Transform的作用域
-  @Override
-  Set<? super QualifiedContent.Scope> getScopes() {
-    return TransformManager.SCOPE_FULL_PROJECT
-  }
+    //  println "==== directoryInput file name ==== " + file.getAbsolutePath()
+    if (name.endsWith(".class") && !name.endsWith("R.class") &&
+        !name.endsWith("BuildConfig.class") &&
+        !name.contains("R\$")) {
+      System.out.println("FilePath   directoryInput file name ==== " + file.getAbsolutePath())
 
-  //指明是否是增量构建
-  @Override
-  boolean isIncremental() {
-    return false
+      ClassReader classReader = new ClassReader(file.bytes)
+      ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
+      AopClassVisitor classVisitor = new AopClassVisitor(Opcodes.ASM5, classWriter)
+      classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
+      byte[] bytes = classWriter.toByteArray()
+      File destFile = new File(file.parentFile.absoluteFile, name)
+      //project.logger.error "==== 重新写入的位置->lastFilePath === " + destFile.getAbsolutePath()
+      FileOutputStream fileOutputStream = new FileOutputStream(destFile)
+      fileOutputStream.write(bytes)
+      fileOutputStream.close()
+    }
   }
 }

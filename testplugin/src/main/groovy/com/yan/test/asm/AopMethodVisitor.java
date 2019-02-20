@@ -21,6 +21,11 @@ class AopMethodVisitor extends AdviceAdapter {
       mv.visitVarInsn(ALOAD, 1);
       mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/yan/fortest/LogUtils", "e",
           "(Landroid/view/View;)V", false);
+      mv.visitEnd();
+    }
+
+    if ("onCreate".equals(mMethodName) && "(Landroid/os/Bundle;)V".equals(mMethodDes)) {
+      mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/yan/fortest/LogUtils", "e", "()V", false);
     }
   }
 
