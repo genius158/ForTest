@@ -10,13 +10,12 @@ import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
 
 /**
- * code from https://github.com/liujianwj/AsmDemo/blob/master/buildsrc/src/main/groovy/com/liujian/AsmInjectTrans.groovy
- */
-class TestTransform extends Transform{
-
+ * code from https://github.com/liujianwj/AsmDemo/blob/master/buildsrc/src/main/groovy/com/liujian/AsmInjectTrans.groovy*/
+class TestTransform extends Transform {
 
   @Override
-  void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
+  void transform(TransformInvocation transformInvocation)
+      throws TransformException, InterruptedException, IOException {
     super.transform(transformInvocation)
     // Transform的inputs有两种类型，一种是目录，一种是jar包，要分开遍历
     transformInvocation.inputs.each { TransformInput input ->
@@ -28,11 +27,11 @@ class TestTransform extends Transform{
           directoryInput.file.eachFileRecurse { File file ->
             def name = file.name
             //  println "==== directoryInput file name ==== " + file.getAbsolutePath()
-            if (name.endsWith(".class")
-                && !name.endsWith("R.class")
-                && !name.endsWith("BuildConfig.class")
-                && !name.contains("R\$")) {
-              println "==== directoryInput file name ==== " + file.getAbsolutePath()
+            if (name.endsWith(".class") && !name.endsWith("R.class") &&
+                !name.endsWith("BuildConfig.class") &&
+                !name.contains("R\$")) {
+              System.out.println(
+                  "FilePath   directoryInput file name ==== " + file.getAbsolutePath())
 
               ClassReader classReader = new ClassReader(file.bytes)
               ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
@@ -52,6 +51,8 @@ class TestTransform extends Transform{
         def dest = transformInvocation.outputProvider.getContentLocation(directoryInput.name,
             directoryInput.contentTypes, directoryInput.scopes,
             Format.DIRECTORY)
+
+        System.out.println("FilePath     outputFilePath === " + dest)
 
         // 将input的目录复制到output指定目录
         FileUtils.copyDirectory(directoryInput.file, dest)
