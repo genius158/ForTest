@@ -92,10 +92,6 @@ public abstract class BaseWeaver implements IWeaver {
     return classWriter.toByteArray();
   }
 
-  public void setExtension(Object extension) {
-
-  }
-
   protected ClassVisitor wrapClassWriter(ClassWriter classWriter) {
     return classWriter;
   }
