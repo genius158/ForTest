@@ -14,6 +14,8 @@ class AopMethodVisitor extends AdviceAdapter {
     super(api, originMV, access, methodName, desc);
     mMethodName = methodName;
     mMethodDes = desc;
+
+    System.out.println("AopMethodVisitor  -------  " + mMethodDes + "    " + methodDesc);
   }
 
   @Override protected void onMethodEnter() {

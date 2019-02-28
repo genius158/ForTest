@@ -49,9 +49,17 @@ class TestTransform extends Transform {
         //文件夹里面包含的是我们手写的类以及R.class、BuildConfig.class以及R$XXX.class等
         if (directoryInput.file.isDirectory()) {
           // println "==== directoryInput.file = " + directoryInput.file
-          directoryInput.file.eachFileRecurse { File file -> fileModify(file)
+          directoryInput.file.eachFileRecurse { File file ->
+            // File file -> fileModify(file)
+            String filePath = file.getPath()
+            if (filePath.endsWith(".class") && !filePath.contains('R$') &&
+                !filePath.contains('R.class') &&
+                !filePath.contains('BuildConfig.class')) {
+              System.out.println("FilePath  111   outputFilePath === " + file.getPath())
+            }
           }
         }
+        System.out.println("FilePath  222   outputFilePath === " + directoryInput.file.getPath())
 
         // 获取output目录
         def dest = transformInvocation.outputProvider.getContentLocation(directoryInput.name,
@@ -78,8 +86,7 @@ class TestTransform extends Transform {
             "    " +
             jarInput.file +
             "     " +
-            jarInput.file.listFiles()
-        )
+            jarInput.file.listFiles())
 
         //生成输出路径
         def dest = transformInvocation.outputProvider.getContentLocation(jarName + md5Name,
