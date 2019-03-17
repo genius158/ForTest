@@ -17,14 +17,16 @@
       >
     <com.yan.fortest.RippleLayout
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         app:rippleColor="@android:color/holo_blue_dark"
+        app:rippleMask="@mipmap/iap_vip_icon_core_purchase_close_h"
         >
       <ImageView
           android:id="@+id/view"
+          android:layout_margin="10dp"
           android:layout_width="200dp"
           android:layout_height="200dp"
-          android:layout_margin="10dp"
           android:background="@mipmap/iap_vip_icon_close_dialog_coupon_achieve"
           android:clickable="true"
           />

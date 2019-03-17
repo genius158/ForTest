@@ -2,5 +2,6 @@
 <resources>
   <declare-styleable name="RippleLayout">
     <attr format="reference" name="rippleColor"/>
+    <attr format="reference" name="rippleMask"/>
   </declare-styleable>
 </resources>
