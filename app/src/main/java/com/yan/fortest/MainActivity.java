@@ -2,7 +2,10 @@ package com.yan.fortest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity implements Runnable {
 
@@ -32,14 +35,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
   @Override public void run() {
     final View v = findViewById(R.id.view);
-    int random = (int) (Math.random() * 2);
-    v.setBackgroundResource(
-        random == 0 ? R.mipmap.ic_launcher : R.mipmap.iap_vip_icon_core_purchase_close_h);
+    float random = (float) (Math.random());
+    //v.setPadding(v.getPaddingLeft() + random, v.getPaddingTop() + random,
+    //    v.getPaddingRight() + random, v.getPaddingRight() + random);
+    //v.setBackgroundResource(
+    //    random == 0 ? R.mipmap.ic_launcher : R.mipmap.iap_vip_icon_core_purchase_close_h);
+    v.setScaleX(random);
+    v.setScaleY(random);
     v.postDelayed(this, 5000);
-    v.postDelayed(new Runnable() {
-      @Override public void run() {
-        v.setLayoutParams(v.getLayoutParams());
-      }
-    }, 2000);
   }
 }

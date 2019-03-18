@@ -10,25 +10,24 @@
       xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/colorPrimaryDark"
       android:orientation="vertical"
       android:padding="10dp"
       tools:context=".MainActivity"
       >
     <com.yan.fortest.RippleLayout
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        app:rippleColor="@android:color/holo_blue_dark"
-        app:rippleMask="@mipmap/iap_vip_icon_core_purchase_close_h"
+        android:layout_margin="10dp"
+        app:rippleColor="#24000000"
         >
       <ImageView
           android:id="@+id/view"
-          android:layout_margin="10dp"
           android:layout_width="200dp"
           android:layout_height="200dp"
-          android:background="@mipmap/iap_vip_icon_close_dialog_coupon_achieve"
+          android:layout_margin="10dp"
+          android:background="@mipmap/ic_launcher"
           android:clickable="true"
+          android:src="@mipmap/iap_vip_icon_core_purchase_close_h"
           />
     </com.yan.fortest.RippleLayout>
 
@@ -37,15 +36,15 @@
         android:layout_height="wrap_content"
         >
       <ImageView
-          android:layout_width="200dp"
-          android:layout_height="200dp"
+          android:layout_width="300dp"
+          android:layout_height="300dp"
           android:layout_marginBottom="10dp"
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
           android:layout_marginTop="10dp"
-          android:background="@mipmap/ic_launcher_round"
           android:clickable="true"
           android:gravity="center"
+          android:src="@mipmap/ic_launcher_round"
           />
     </com.yan.fortest.RippleLayout>
 
@@ -54,8 +53,440 @@
         android:layout_height="wrap_content"
         >
       <ImageView
-          android:layout_width="200dp"
-          android:layout_height="200dp"
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
+          android:layout_marginBottom="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@mipmap/iap_vip_icon_core_purchase_close_h"
+          android:clickable="true"
+          android:gravity="center"
+          />
+    </com.yan.fortest.RippleLayout>
+    <com.yan.fortest.RippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <ImageView
+          android:layout_width="300dp"
+          android:layout_height="300dp"
           android:layout_marginBottom="10dp"
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
@@ -73,8 +504,8 @@
         android:foreground="?attr/selectableItemBackground"
         >
       <ImageView
-          android:layout_width="200dp"
-          android:layout_height="200dp"
+          android:layout_width="300dp"
+          android:layout_height="300dp"
           android:layout_marginBottom="10dp"
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
@@ -92,8 +523,8 @@
         >
       <ImageView
           android:id="@+id/view2"
-          android:layout_width="200dp"
-          android:layout_height="200dp"
+          android:layout_width="300dp"
+          android:layout_height="300dp"
           android:layout_marginBottom="10dp"
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"

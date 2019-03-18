@@ -7,17 +7,17 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * @author genius158
+ */
 public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListener {
   private static final int DEFAULT_COLOR = Color.parseColor("#24000000");
 
-  private static final String TAG = "RippleLayout";
   private View child;
   private Drawable rippleDrawable;
   private int rippleColor;
@@ -65,7 +65,6 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
     measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
     setMeasuredDimension(MeasureSpec.makeMeasureSpec(child.getMeasuredWidth(), MeasureSpec.EXACTLY),
         MeasureSpec.makeMeasureSpec(child.getMeasuredHeight(), MeasureSpec.EXACTLY));
-    Log.e(TAG, "onMeasure: " + getMeasuredWidth() + "  " + getMeasuredHeight());
   }
 
   @Override protected boolean checkLayoutParams(LayoutParams p) {
@@ -85,7 +84,6 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
   }
 
   @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
-    Log.e(TAG, "onLayout: " + l + "  " + t + "  " + r + "  " + b);
     child.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
   }
 
@@ -95,26 +93,20 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
 
     boolean bgChanged = rippleDrawable != child.getBackground()
         || child.getBackground() == null && rippleDrawable == null;
+
     if (bgChanged) {
       Drawable drawableBG = child.getBackground();
       Drawable drawableMask =
           rippleMaskId == -1 ? drawableBG : ContextCompat.getDrawable(getContext(), rippleMaskId);
-      rippleDrawable = getSelectableDrawableFor(drawableBG, drawableMask, rippleColor);
+      rippleDrawable = getRippleDrawable(drawableBG, drawableMask, rippleColor);
       child.setBackground(rippleDrawable);
     }
-    Log.e(TAG, "onLayoutChange: " + bgChanged + "   " + rippleDrawable);
   }
 
-  @NonNull public static Drawable getSelectableDrawableFor(Drawable drawable) {
-    return getSelectableDrawableFor(drawable, drawable, DEFAULT_COLOR);
-  }
-
-  @NonNull
-  public static Drawable getSelectableDrawableFor(Drawable drawable, Drawable mask, int color) {
-    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-      ColorStateList pressedColor = ColorStateList.valueOf(color);
-      return new RippleDrawable(pressedColor, drawable, mask);
+  public static Drawable getRippleDrawable(Drawable drawable, Drawable mask, int color) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      return new RippleDrawable(ColorStateList.valueOf(color), drawable, mask);
     }
-    return drawable;
+    return new DrawableDownApi21(drawable, color);
   }
 }
