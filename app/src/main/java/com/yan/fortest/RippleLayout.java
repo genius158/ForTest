@@ -104,9 +104,13 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
   }
 
   public static Drawable getRippleDrawable(Drawable drawable, Drawable mask, int color) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      return new RippleDrawable(ColorStateList.valueOf(color), drawable, mask);
-    }
+    //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    //  return new RippleDrawable(ColorStateList.valueOf(color), drawable, mask);
+    //}
     return new DrawableDownApi21(drawable, color);
+  }
+
+  @Override public void onVisibilityAggregated(boolean isVisible) {
+    super.onVisibilityAggregated(isVisible);
   }
 }
