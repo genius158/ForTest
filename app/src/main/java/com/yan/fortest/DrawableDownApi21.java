@@ -88,7 +88,10 @@ class DrawableDownApi21 extends Drawable implements Drawable.Callback {
     if (coverShow) {
       coverBitmap(original, color);
     } else {
-      cover = null;
+      if (cover != null) {
+        cover.setCallback(null);
+        cover = null;
+      }
     }
 
     invalidateSelf();
@@ -133,6 +136,13 @@ class DrawableDownApi21 extends Drawable implements Drawable.Callback {
 
   @Override public boolean isStateful() {
     return true;
+  }
+
+  @Override public boolean setVisible(boolean visible, boolean restart) {
+    if (original != null) {
+      original.setVisible(visible, restart);
+    }
+    return super.setVisible(visible, restart);
   }
 
   private Drawable tintDrawable(Drawable drawable, ColorStateList colors) {

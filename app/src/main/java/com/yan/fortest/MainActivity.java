@@ -13,13 +13,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    final View v = findViewById(R.id.view);
-    v.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        System.out.print(
-            "MainActivityMainActivityMainActivityMainActivityMainActivityMainActivity");
-      }
-    });
+    //final View v = findViewById(R.id.view);
+    //v.setOnClickListener(new View.OnClickListener() {
+    //  @Override public void onClick(View v) {
+    //    System.out.print(
+    //        "MainActivityMainActivityMainActivityMainActivityMainActivityMainActivity");
+    //  }
+    //});
 
     //v.postDelayed(this, 5000);
 
