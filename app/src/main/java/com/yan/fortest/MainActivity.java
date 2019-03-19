@@ -3,6 +3,7 @@ package com.yan.fortest;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
     //final View v = findViewById(R.id.view);
     //v.setOnClickListener(new View.OnClickListener() {
     //  @Override public void onClick(View v) {

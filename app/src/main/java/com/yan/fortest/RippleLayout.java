@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -107,10 +112,17 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       return new RippleDrawable(ColorStateList.valueOf(color), drawable, mask);
     }
-    return new DrawableDownApi21(drawable, color);
+
+    if (drawable == null
+        || drawable instanceof StateListDrawable
+        || drawable instanceof ShapeDrawable
+        || drawable instanceof GradientDrawable
+        || drawable instanceof NinePatchDrawable
+        || drawable instanceof BitmapDrawable) {
+      return new DrawableWithCoverTint(drawable, color);
+    }
+
+    return new DrawableWithCover(drawable, color);
   }
 
-  @Override public void onVisibilityAggregated(boolean isVisible) {
-    super.onVisibilityAggregated(isVisible);
-  }
 }

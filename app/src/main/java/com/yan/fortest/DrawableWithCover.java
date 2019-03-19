@@ -1,28 +1,34 @@
 package com.yan.fortest;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.graphics.drawable.ShapeDrawable;
 import android.support.annotation.NonNull;
-import java.lang.ref.WeakReference;
 
 /**
  * @author genius158
+ *
+ * work on all kinds of drawable
+ * use shader to cteate cover
  */
-class DrawableDownApiAll21 extends Drawable implements Runnable {
-  private int color;
-
+class DrawableWithCover extends Drawable {
   private Drawable original;
-  private WeakReference<Bitmap> cover;
+  private int color;
   private boolean coverShow;
   private Rect bounds = new Rect();
+  private Shader shader;
+  private Paint paint = new Paint();
 
-  DrawableDownApiAll21(Drawable original, int color) {
+  DrawableWithCover(Drawable original, int color) {
     this.original = original;
     this.color = color;
   }
@@ -34,13 +40,10 @@ class DrawableDownApiAll21 extends Drawable implements Runnable {
     if (!coverShow) {
       return;
     }
-    if (cover == null) {
+    if (shader == null) {
       return;
     }
-    Bitmap coverBitmap = cover.get();
-    if (coverBitmap != null) {
-      canvas.drawBitmap(coverBitmap, null, original != null ? original.getBounds() : bounds, null);
-    }
+    canvas.drawRect(bounds, paint);
   }
 
   @Override public void setAlpha(int alpha) {
@@ -74,12 +77,8 @@ class DrawableDownApiAll21 extends Drawable implements Runnable {
     }
 
     coverShow = enabled && (pressed || focused || hovered);
-
     if (coverShow) {
-      coverBitmap(original, color);
-    } else {
-      unscheduleSelf(this);
-      scheduleSelf(this, SystemClock.uptimeMillis() + 3000);
+      loadShader(original);
     }
 
     invalidateSelf();
@@ -97,48 +96,24 @@ class DrawableDownApiAll21 extends Drawable implements Runnable {
     invalidateSelf();
   }
 
-  private void coverBitmap(Drawable drawable, int color) {
-    Bitmap coverBitmap = null;
-    if (cover != null) {
-      coverBitmap = cover.get();
+  private void loadShader(Drawable drawable) {
+    if (shader != null) {
+      return;
     }
-    if (coverBitmap == null
-        || coverBitmap.getWidth() != bounds.width()
-        || coverBitmap.getHeight() != bounds.height()) {
-      if (coverBitmap != null) {
-        coverBitmap.recycle();
-      }
-      coverBitmap = Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ARGB_4444);
-      cover = new WeakReference<>(coverBitmap);
-    }
+    Bitmap coverBitmap =
+        Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ALPHA_8);
+    shader = new BitmapShader(coverBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
     Canvas canvas = new Canvas(coverBitmap);
-    if (drawable != null) {
-      drawable.setBounds(bounds);
-      drawable.draw(canvas);
+    if (drawable == null) {
+      drawable = new ShapeDrawable();
     }
-    canvas.drawColor(color, PorterDuff.Mode.SRC_IN);
+    drawable.setBounds(bounds);
+    drawable.draw(canvas);
+    paint.setShader(shader);
+    paint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
   }
 
   @Override public boolean isStateful() {
     return true;
-  }
-
-  @Override public void run() {
-    if (cover != null) {
-      Bitmap bitmap = cover.get();
-      if (bitmap != null) {
-        bitmap.recycle();
-      }
-      cover.clear();
-      cover = null;
-    }
-  }
-
-  @Override public boolean setVisible(boolean visible, boolean restart) {
-    if (!visible) {
-      unscheduleSelf(this);
-      run();
-    }
-    return super.setVisible(visible, restart);
   }
 }

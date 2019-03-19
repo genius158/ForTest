@@ -5,12 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.NinePatchDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -18,8 +14,19 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 
 /**
  * @author genius158
+ *
+ * good work on
+ * <br>
+ * ShapeDrawable
+ * GradientDrawable
+ * NinePatchDrawable
+ * BitmapDrawable
+ * <br/>
+ *
+ * use drawable setColorFiller change self color
+ * to set cover
  */
-class DrawableDownApi21 extends Drawable implements Drawable.Callback {
+class DrawableWithCoverTint extends Drawable implements Drawable.Callback {
   private int color;
 
   private Drawable original;
@@ -27,7 +34,7 @@ class DrawableDownApi21 extends Drawable implements Drawable.Callback {
   private boolean coverShow;
   private Rect bounds = new Rect();
 
-  DrawableDownApi21(Drawable original, int color) {
+  DrawableWithCoverTint(Drawable original, int color) {
     this.original = original;
     this.color = color;
     if (original != null) {
@@ -102,10 +109,7 @@ class DrawableDownApi21 extends Drawable implements Drawable.Callback {
     if (cover != null || original instanceof StateListDrawable) {
       return;
     }
-    if (original instanceof ShapeDrawable
-        || original instanceof GradientDrawable
-        || original instanceof NinePatchDrawable
-        || original instanceof BitmapDrawable) {
+    if (original != null) {
       ConstantState cs = original.getConstantState();
       if (cs != null) {
         cover = tintDrawable(cs.newDrawable(), ColorStateList.valueOf(color));
