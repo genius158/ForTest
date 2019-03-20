@@ -16,7 +16,6 @@ import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 
 /**
  * @author genius158
@@ -102,7 +101,6 @@ import android.util.Log;
 
   @Override protected void onBoundsChange(Rect bounds) {
     super.onBoundsChange(bounds);
-    Log.e("onBoundsChange", "onBoundsChange: " + bounds);
     if (this.bounds.equals(bounds)) {
       return;
     }
@@ -163,7 +161,8 @@ import android.util.Log;
         if (bitmapCanvas == null) {
           bitmapCanvas = new Canvas(bitmapRipple);
         }
-        bitmapRipple.eraseColor(Color.TRANSPARENT);
+        bitmapCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+
         DrawableRippleWithCover.super.draw(bitmapCanvas);
         canvas.drawBitmap(bitmapRipple, null, bounds, paint);
       }
