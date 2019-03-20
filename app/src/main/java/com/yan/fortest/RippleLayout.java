@@ -13,6 +13,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +22,20 @@ import android.view.ViewGroup;
  * @author genius158
  */
 public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListener {
-  private static final int DEFAULT_COLOR = Color.parseColor("#24000000");
+  public static final int DEFAULT_COLOR = Color.parseColor("#24000000");
 
   private View child;
   private Drawable rippleDrawable;
   private int rippleColor;
   private int rippleMaskId;
+  private int rippleStyle;
 
   public RippleLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
     TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RippleLayout);
     rippleColor = ta.getColor(R.styleable.RippleLayout_rippleColor, DEFAULT_COLOR);
     rippleMaskId = ta.getResourceId(R.styleable.RippleLayout_rippleMask, -1);
+    rippleStyle = ta.getInt(R.styleable.RippleLayout_rippleStyle, 0);
     ta.recycle();
   }
 
@@ -52,7 +55,7 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
     super.setClickable(false);
   }
 
-  @Override public void setOnClickListener(final View.OnClickListener onClickListener) {
+  @Override public void setOnClickListener(final OnClickListener onClickListener) {
     child.setOnClickListener(onClickListener);
   }
 
@@ -103,14 +106,29 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
       Drawable drawableBG = child.getBackground();
       Drawable drawableMask =
           rippleMaskId == -1 ? drawableBG : ContextCompat.getDrawable(getContext(), rippleMaskId);
-      rippleDrawable = getRippleDrawable(drawableBG, drawableMask, rippleColor);
-      child.setBackground(rippleDrawable);
+      rippleDrawable = getRippleDrawable(drawableBG, rippleStyle, drawableMask, rippleColor);
+      ViewCompat.setBackground(child, rippleDrawable);
     }
   }
 
+  public static Drawable getRippleDrawable(Drawable drawable) {
+    return getRippleDrawable(drawable, 0, drawable, DEFAULT_COLOR);
+  }
+
   public static Drawable getRippleDrawable(Drawable drawable, Drawable mask, int color) {
+    return getRippleDrawable(drawable, 0, mask, color);
+  }
+
+  public static Drawable getRippleDrawable(Drawable drawable, int rippleStyle, Drawable mask,
+      int color) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      return new RippleDrawable(ColorStateList.valueOf(color), drawable, mask);
+      if (rippleStyle == 1) {
+        return new RippleDrawable(ColorStateList.valueOf(color), drawable, mask);
+      }
+      if (drawable == null && mask == null) {
+        return new RippleDrawable(ColorStateList.valueOf(color), null, null);
+      }
+      return new DrawableRippleWithCover(drawable, mask, color);
     }
 
     if (drawable == null
@@ -119,10 +137,9 @@ public class RippleLayout extends ViewGroup implements View.OnLayoutChangeListen
         || drawable instanceof GradientDrawable
         || drawable instanceof NinePatchDrawable
         || drawable instanceof BitmapDrawable) {
-      return new DrawableWithCoverTint(drawable, color);
+      return new DrawableWithCoverTint(drawable, mask, color);
     }
 
-    return new DrawableWithCover(drawable, color);
+    return new DrawableWithCover(drawable, mask, color);
   }
-
 }

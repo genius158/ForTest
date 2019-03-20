@@ -18,19 +18,24 @@ import android.support.annotation.NonNull;
  * @author genius158
  *
  * work on all kinds of drawable
- * use shader to cteate cover
+ * use shader to cteate mask
  */
-class DrawableWithCover extends Drawable {
-  private Drawable original;
-  private int color;
+class DrawableWithCover extends Drawable implements Drawable.Callback {
+  private final Drawable original;
+  private final Drawable mask;
   private boolean coverShow;
-  private Rect bounds = new Rect();
+  private final Rect bounds = new Rect();
+  private final Paint paint = new Paint();
   private Shader shader;
-  private Paint paint = new Paint();
 
-  DrawableWithCover(Drawable original, int color) {
+  DrawableWithCover(Drawable original, Drawable mask, int color) {
     this.original = original;
-    this.color = color;
+    this.mask = mask;
+    paint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+
+    if (original != null) {
+      original.setCallback(this);
+    }
   }
 
   @Override public void draw(@NonNull Canvas canvas) {
@@ -47,11 +52,15 @@ class DrawableWithCover extends Drawable {
   }
 
   @Override public void setAlpha(int alpha) {
-
+    if (original != null) {
+      original.setAlpha(alpha);
+    }
   }
 
   @Override public void setColorFilter(ColorFilter colorFilter) {
-
+    if (original != null) {
+      original.setColorFilter(colorFilter);
+    }
   }
 
   @Override public int getOpacity() {
@@ -59,6 +68,10 @@ class DrawableWithCover extends Drawable {
   }
 
   @Override protected boolean onStateChange(int[] stateSet) {
+    if (original != null) {
+      original.setState(stateSet);
+    }
+
     boolean enabled = false;
     boolean pressed = false;
     boolean focused = false;
@@ -78,7 +91,7 @@ class DrawableWithCover extends Drawable {
 
     coverShow = enabled && (pressed || focused || hovered);
     if (coverShow) {
-      loadShader(original);
+      loadShader(mask == null ? original : mask);
     }
 
     invalidateSelf();
@@ -92,6 +105,9 @@ class DrawableWithCover extends Drawable {
     this.bounds.set(bounds);
     if (original != null) {
       original.setBounds(this.bounds);
+    }
+    if (mask != null) {
+      mask.setBounds(this.bounds);
     }
     invalidateSelf();
   }
@@ -107,13 +123,44 @@ class DrawableWithCover extends Drawable {
     if (drawable == null) {
       drawable = new ShapeDrawable();
     }
-    drawable.setBounds(bounds);
     drawable.draw(canvas);
     paint.setShader(shader);
-    paint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
   }
 
   @Override public boolean isStateful() {
     return true;
+  }
+
+  @Override public int getIntrinsicWidth() {
+    if (original != null) {
+      return original.getIntrinsicWidth();
+    }
+    if (mask != null) {
+      return mask.getIntrinsicWidth();
+    }
+    return super.getIntrinsicWidth();
+  }
+
+  @Override public int getIntrinsicHeight() {
+    if (original != null) {
+      return original.getIntrinsicHeight();
+    }
+    if (mask != null) {
+      return mask.getIntrinsicHeight();
+    }
+
+    return super.getIntrinsicHeight();
+  }
+
+  @Override public void invalidateDrawable(@NonNull Drawable who) {
+    this.invalidateSelf();
+  }
+
+  @Override public void scheduleDrawable(@NonNull Drawable who, @NonNull Runnable what, long when) {
+    this.scheduleSelf(what, when);
+  }
+
+  @Override public void unscheduleDrawable(@NonNull Drawable who, @NonNull Runnable what) {
+    this.unscheduleSelf(what);
   }
 }
