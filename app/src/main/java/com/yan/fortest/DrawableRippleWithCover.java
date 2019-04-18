@@ -126,7 +126,6 @@ import android.support.annotation.RequiresApi;
     private Canvas bitmapCanvas;
 
     private final Paint paint;
-    private Shader shader;
 
     RenderInner(int color) {
       paint = new Paint();
@@ -134,13 +133,13 @@ import android.support.annotation.RequiresApi;
     }
 
     void loadShader() {
-      if (shader != null) {
+      if (paint.getShader() != null) {
         return;
       }
       Drawable drawable = original == null ? mask : original;
       Bitmap coverBitmap =
           Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ALPHA_8);
-      shader = new BitmapShader(coverBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+      Shader shader = new BitmapShader(coverBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
       Canvas canvas = new Canvas(coverBitmap);
       if (drawable == null) {
         drawable = new ShapeDrawable();
@@ -161,20 +160,19 @@ import android.support.annotation.RequiresApi;
         if (bitmapCanvas == null) {
           bitmapCanvas = new Canvas(bitmapRipple);
         }
-        bitmapCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-
+        bitmapRipple.eraseColor(Color.TRANSPARENT);
         DrawableRippleWithCover.super.draw(bitmapCanvas);
         canvas.drawBitmap(bitmapRipple, null, bounds, paint);
       }
     }
 
     void clear() {
+      paint.setShader(null);
       if (bitmapRipple != null) {
         bitmapRipple.recycle();
         bitmapRipple = null;
       }
       bitmapCanvas = null;
-      shader = null;
     }
   }
 }
