@@ -112,7 +112,9 @@ parent（父亲）:
 如果是match_parent textView setText（）出现换行的情况     
 只调用child的api 什么情况下uncle会触发onMeasure、 onLayout    
 
-番外:怎么监听setVisibility(GONE)     
+番外:界面渲染优化方向
+怎么监听setVisibility(GONE)
+
 
 
 ### 代码提示
