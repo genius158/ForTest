@@ -151,9 +151,9 @@ val map: MutableMap<Int, Int> = HashMap()
       for (j in num2.length - 1 downTo 0) {
         val n2 = num2[j] - '0'
         val sum = res[i + j + 1] + n1 * n2
-        //进位
-        res[i + j + 1] = sum % 10
         //当前位置数值
+        res[i + j + 1] = sum % 10
+        //进位
         res[i + j] += sum / 10
       }
     }
